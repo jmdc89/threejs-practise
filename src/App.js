@@ -19,7 +19,7 @@ const Box = () => {
 function App() {
   return (
     <>
-      <Canvas colorManagement>
+      <Canvas colorManagement camera={{position: [-5,2,10], fov: 60}}>
         <ambientLight intensity={0.3} />
         <Box/>
       </Canvas>
