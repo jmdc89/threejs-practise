@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import Header from "./components/header";
 import "./App.scss"
 
 import {Canvas, useFrame } from "react-three-fiber";
@@ -40,6 +41,7 @@ const SpinningMesh = ({position, args, color, speed}) => {
 function App() {
   return (
     <>
+      <Header/>
       <Canvas 
           shadowMap
           colorManagement 
