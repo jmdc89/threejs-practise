@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
+import Shoe from './components/shoe/Shoe';
 // import App from './App';
 
 
@@ -8,6 +9,7 @@ import './index.scss';
 ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
+    <Shoe />
   </React.StrictMode>,
   document.getElementById('root')
 );
