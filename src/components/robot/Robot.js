@@ -8,21 +8,15 @@ import {proxy, useProxy} from "valtio";
 const state = proxy({
     current: null,
     items: {
-      laces: "#ffffff",
-      mesh: "#ffffff",
-      caps: "#ffffff",
-      inner: "#ffffff",
-      sole: "#ffffff",
-      stripes: "#ffffff",
-      band: "#ffffff",
-      patch: "#ffffff",
+      structure2: "#ffffff",
+
     },
   });
 
 function Model(props) {
     const group = useRef()
     const snap = useProxy(state);
-    const { nodes, materials } = useGLTF('shoe-draco.glb')
+    const { nodes, materials } = useGLTF('robocompres.glb')
     const [hovered, set] = useState(null)
 
     useEffect(() => {
@@ -34,19 +28,14 @@ function Model(props) {
 
     return (
         <group
-        ref={group} {...props} dispose={null}
-        onPointerOver={(e) => (e.stopPropagation(), set(e.object.material.name))}
+        ref={group} {...props} dispose={null}>
+        {/* onPointerOver={(e) => (e.stopPropagation(), set(e.object.material.name))}
         onPointerOut={(e) => e.intersections.length === 0 && set(null)}
         onPointerMissed={() => (state.current = null)}
-        onPointerDown={(e) => (e.stopPropagation(), (state.current = e.object.material.name))}>
-        <mesh geometry={nodes.shoe.geometry} material={materials.laces} material-color={snap.items.laces} />
-        <mesh geometry={nodes.shoe_1.geometry} material={materials.mesh} material-color={snap.items.mesh} />
-        <mesh geometry={nodes.shoe_2.geometry} material={materials.caps} material-color={snap.items.caps} />
-        <mesh geometry={nodes.shoe_3.geometry} material={materials.inner} material-color={snap.items.inner} />
-        <mesh geometry={nodes.shoe_4.geometry} material={materials.sole} material-color={snap.items.sole} />
-        <mesh geometry={nodes.shoe_5.geometry} material={materials.stripes} material-color={snap.items.stripes} />
-        <mesh geometry={nodes.shoe_6.geometry} material={materials.band} material-color={snap.items.band} />
-        <mesh geometry={nodes.shoe_7.geometry} material={materials.patch} material-color={snap.items.patch} />
+        onPointerDown={(e) => (e.stopPropagation(), (state.current = e.object.material.name))}> */}
+         <mesh material={materials.structure1} geometry={nodes.robot_blanco.geometry}  />
+        <mesh material={materials.structure2} material-color={snap.items.structure2} geometry={nodes.robot_naranjo.geometry}  />
+        <mesh material={materials.structure3} geometry={nodes.robot_negro.geometry} />
       </group>
     )
   }
@@ -54,15 +43,14 @@ function Model(props) {
   function Picker() {
     const snap = useProxy(state)
     return (
-      <div style={{ display: snap.current ? "block" : "none" }}>
-        <HexColorPicker className="picker" color={snap.items[snap.current]} onChange={(color) => (state.items[snap.current] = color)} />
-        <h1>{snap.current}</h1>
+      <div>
+        <HexColorPicker className="picker" color={snap.items.structure2} onChange={(color) => (state.items.structure2 = color)} />
+        <h1>Choose the color!</h1>
       </div>
     )
   }
 
-
-export default function Shoe() {
+export default function Robot() {
     return (
         <>
         <Picker/>
@@ -75,6 +63,7 @@ export default function Shoe() {
                 <Environment files="royal_esplanade_1k.hdr" />
             </Suspense>
             <OrbitControls/>
+            <ContactShadows/>
         </Canvas>
         </div>
         </>
