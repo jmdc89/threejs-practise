@@ -65,12 +65,17 @@ export default function Shoe() {
     return (
         <>
         <Picker/>
+        <div style={{ width: "100vw", height: "80vh" }}>
         <Canvas>
             <ambientLight intensity={0.5} />
+            <spotLight intensity={0.3} position={[5,20,20]} />
             <Suspense fallback={null}>
                 <Model />
+                <Environment files="royal_esplanade_1k.hdr" />
             </Suspense>
+            <OrbitControls/>
         </Canvas>
+        </div>
         </>
     )
 }
