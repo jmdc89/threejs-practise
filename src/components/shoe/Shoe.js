@@ -4,6 +4,7 @@ import { ContactShadows, Environment, useGLTF, OrbitControls } from '@react-thre
 import { HexColorPicker } from "react-colorful"
 import {proxy, useProxy} from "valtio";
 
+
 const state = proxy({
     current: null,
     items: {
@@ -65,7 +66,7 @@ export default function Shoe() {
     return (
         <>
         <Picker/>
-        <div style={{ width: "100vw", height: "80vh" }}>
+        <div style={{ width: "100vw", height: "100vh" }}>
         <Canvas>
             <ambientLight intensity={0.5} />
             <spotLight intensity={0.3} position={[5,20,20]} />
